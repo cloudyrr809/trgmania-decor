@@ -40,6 +40,18 @@
     .ph img { transition: none; }
     html { scroll-behavior: auto; }
   }
+  /* Мини-букеты: покачиваются от ленты, как в руке */
+  .deco { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .bq { position:absolute; transform-origin: 50% 62%; transform: rotate(var(--r)); animation: bq 9s ease-in-out infinite alternate; }
+  @keyframes bq { from { transform: rotate(calc(var(--r) - 4deg)); } to { transform: rotate(calc(var(--r) + 4deg)); } }
+  @media (max-width: 1023px) { .deco .bq { max-width: 72px; } .bq-top { left:auto !important; right:3%; top:86px !important; width:58px !important; } }
+  main > section { position: relative; z-index: 1; }
+  html, body { overflow-x: clip; } main { overflow-x: clip; }
+  .petals { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+  .petal { position:absolute; width:14px; opacity:0; animation: fall linear infinite; }
+  @keyframes fall { 0% { transform: translate(0,0) rotate(0); opacity:0; } 10% { opacity:.8; } 50% { transform: translate(40px,320px) rotate(160deg); } 88% { opacity:.8; } 100% { transform: translate(-20px,640px) rotate(320deg); opacity:0; } }
+  @media (prefers-reduced-motion: reduce) { .bq, .petal { animation:none; } .petal { display:none; } }
+  .petals.over { z-index:15; }
 </style>
 </head>
 <body class="bg-snow text-ink font-sans antialiased overflow-x-hidden">
@@ -94,7 +106,9 @@
 </div>
 
 
-<main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="bouquet" viewBox="0 0 120 210"><path d="M56.5 118 L46 205" stroke="#4B5E4C" stroke-width="1.1"/><path d="M58.25 118 L53 205" stroke="#4B5E4C" stroke-width="1.1"/><path d="M60.0 118 L60 205" stroke="#4B5E4C" stroke-width="1.1"/><path d="M61.75 118 L67 205" stroke="#4B5E4C" stroke-width="1.1"/><path d="M63.25 118 L73 205" stroke="#4B5E4C" stroke-width="1.1"/><path d="M60 120 Q27.0 83.0 14 46" fill="none" stroke="#4B5E4C" stroke-width="1"/><circle cx="44.3" cy="107.7" r="5.1" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="54.3" cy="110.7" r="4.3" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="34.5" cy="95.3" r="4.7" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="44.5" cy="98.3" r="4.0" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="26.0" cy="83.0" r="4.2" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="36.0" cy="86.0" r="3.6" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="19.1" cy="70.7" r="3.8" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="29.1" cy="73.7" r="3.3" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="13.7" cy="58.3" r="3.4" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="23.7" cy="61.3" r="2.9" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><path d="M62 118 Q95.0 85.0 108 52" fill="none" stroke="#4B5E4C" stroke-width="1"/><circle cx="77.7" cy="107.0" r="5.1" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="67.7" cy="110.0" r="4.3" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="87.5" cy="96.0" r="4.7" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="77.5" cy="99.0" r="4.0" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="96.0" cy="85.0" r="4.2" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="86.0" cy="88.0" r="3.6" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="102.9" cy="74.0" r="3.8" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="92.9" cy="77.0" r="3.3" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="108.3" cy="63.0" r="3.4" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><circle cx="98.3" cy="66.0" r="2.9" fill="#4B5E4C" fill-opacity=".22" stroke="#4B5E4C" stroke-width=".9"/><path d="M0 0 C 9.1 -7.8, 19.5 -6.5, 26 0 C 19.5 6.5, 9.1 7.8, 0 0 Z M0 0 L23.400000000000002 0" transform="translate(30 98) rotate(-150)" fill="#4B5E4C" fill-opacity=".18" stroke="#4B5E4C" stroke-width=".9"/><path d="M0 0 C 9.1 -7.8, 19.5 -6.5, 26 0 C 19.5 6.5, 9.1 7.8, 0 0 Z M0 0 L23.400000000000002 0" transform="translate(92 96) rotate(-30)" fill="#4B5E4C" fill-opacity=".18" stroke="#4B5E4C" stroke-width=".9"/><path d="M0 0 C 7.699999999999999 -6.6, 16.5 -5.5, 22 0 C 16.5 5.5, 7.699999999999999 6.6, 0 0 Z M0 0 L19.8 0" transform="translate(60 128) rotate(-110)" fill="#4B5E4C" fill-opacity=".18" stroke="#4B5E4C" stroke-width=".9"/><circle cx="48" cy="78" r="17" fill="#E9C4B4" fill-opacity=".75" stroke="#C99C8A" stroke-width="1"/><path d="M38.65 79.7 A10.2 10.2 0 0 1 56.5 72.9 M57.35 82.25 A7.65 7.65 0 0 1 42.9 70.35 M44.6 80.55 A3.74 3.74 0 1 1 50.55 78" fill="none" stroke="#C99C8A" stroke-width="1" stroke-linecap="round"/><ellipse cx="78.0" cy="61.8" rx="6.3" ry="4.8" transform="rotate(0 78.0 61.8)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="85.8" cy="67.5" rx="6.3" ry="4.8" transform="rotate(72 85.8 67.5)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="82.8" cy="76.7" rx="6.3" ry="4.8" transform="rotate(144 82.8 76.7)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="73.2" cy="76.7" rx="6.3" ry="4.8" transform="rotate(216 73.2 76.7)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="70.2" cy="67.5" rx="6.3" ry="4.8" transform="rotate(288 70.2 67.5)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><circle cx="78" cy="70" r="2.7" fill="#E8D9A8"/><circle cx="70" cy="98" r="13" fill="#F3DCD2" fill-opacity=".75" stroke="#C99C8A" stroke-width="1"/><path d="M62.85 99.3 A7.8 7.8 0 0 1 76.5 94.1 M77.15 101.25 A5.8500000000000005 5.8500000000000005 0 0 1 66.1 92.15 M67.4 99.95 A2.86 2.86 0 1 1 71.95 98" fill="none" stroke="#C99C8A" stroke-width="1" stroke-linecap="round"/><ellipse cx="40.0" cy="98.0" rx="4.6" ry="3.5" transform="rotate(0 40.0 98.0)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="45.8" cy="102.1" rx="4.6" ry="3.5" transform="rotate(72 45.8 102.1)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="43.6" cy="108.9" rx="4.6" ry="3.5" transform="rotate(144 43.6 108.9)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="36.4" cy="108.9" rx="4.6" ry="3.5" transform="rotate(216 36.4 108.9)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><ellipse cx="34.2" cy="102.1" rx="4.6" ry="3.5" transform="rotate(288 34.2 102.1)" fill="#FFFFFF" stroke="#869BB0" stroke-width=".9"/><circle cx="40" cy="104" r="2.0" fill="#E8D9A8"/><circle cx="60" cy="54" r="10" fill="#F6E7E0" fill-opacity=".75" stroke="#C99C8A" stroke-width="1"/><path d="M54.5 55.0 A6.0 6.0 0 0 1 65.0 51.0 M65.5 56.5 A4.5 4.5 0 0 1 57.0 49.5 M58.0 55.5 A2.2 2.2 0 1 1 61.5 54" fill="none" stroke="#C99C8A" stroke-width="1" stroke-linecap="round"/><ellipse cx="88.0" cy="91.0" rx="3.8" ry="2.9" transform="rotate(0 88.0 91.0)" fill="#FFFFFF" stroke="#C99C8A" stroke-width=".9"/><ellipse cx="92.7" cy="94.5" rx="3.8" ry="2.9" transform="rotate(72 92.7 94.5)" fill="#FFFFFF" stroke="#C99C8A" stroke-width=".9"/><ellipse cx="90.9" cy="100.0" rx="3.8" ry="2.9" transform="rotate(144 90.9 100.0)" fill="#FFFFFF" stroke="#C99C8A" stroke-width=".9"/><ellipse cx="85.1" cy="100.0" rx="3.8" ry="2.9" transform="rotate(216 85.1 100.0)" fill="#FFFFFF" stroke="#C99C8A" stroke-width=".9"/><ellipse cx="83.3" cy="94.5" rx="3.8" ry="2.9" transform="rotate(288 83.3 94.5)" fill="#FFFFFF" stroke="#C99C8A" stroke-width=".9"/><circle cx="88" cy="96" r="1.6" fill="#E8D9A8"/><circle cx="28" cy="72" r="4" fill="#fff" stroke="#869BB0" stroke-width=".9"/><circle cx="95" cy="118" r="3.5" fill="#fff" stroke="#869BB0" stroke-width=".9"/><circle cx="34" cy="60" r="3" fill="#fff" stroke="#869BB0" stroke-width=".9"/><path d="M60 128 C 44 128, 30 132, 34 144 C 38 154, 52 148, 60 140 Z M60 128 C 76 128, 90 132, 86 144 C 82 154, 68 148, 60 140 Z" fill="#869BB0" fill-opacity=".45" stroke="#869BB0" stroke-width="1"/><path d="M58 130 C 54 150, 46 164, 40 180 M62 130 C 68 152, 76 166, 84 178" stroke="#869BB0" stroke-width="2.4" stroke-linecap="round" fill="none" stroke-opacity=".7"/><rect x="54" y="122" width="12" height="11" rx="3" fill="#869BB0" fill-opacity=".8"/></symbol><symbol id="petal" viewBox="0 0 20 24"><path d="M10 1 C 18 6, 19 16, 10 23 C 1 16, 2 6, 10 1 Z" fill="#E9C4B4" fill-opacity=".8" stroke="#C99C8A" stroke-width=".7"/></symbol></svg>
+<main class="relative">
+<div class="petals over" aria-hidden="true"><svg class="petal" style="top:0%;left:73%;width:17px;animation-duration:21s;animation-delay:-16s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:5.8%;left:26%;width:12px;animation-duration:22s;animation-delay:-15s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:9.2%;left:25%;width:11px;animation-duration:21s;animation-delay:-9s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:11.3%;left:70%;width:10px;animation-duration:23s;animation-delay:-12s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:20.0%;left:85%;width:12px;animation-duration:23s;animation-delay:-0s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:23.9%;left:10%;width:10px;animation-duration:14s;animation-delay:-6s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:28.7%;left:78%;width:10px;animation-duration:21s;animation-delay:-10s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:31.0%;left:27%;width:13px;animation-duration:24s;animation-delay:-9s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:35.9%;left:86%;width:11px;animation-duration:21s;animation-delay:-20s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:39.3%;left:72%;width:11px;animation-duration:18s;animation-delay:-10s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:46.2%;left:67%;width:14px;animation-duration:14s;animation-delay:-2s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:49.8%;left:15%;width:16px;animation-duration:15s;animation-delay:-9s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:53.5%;left:4%;width:10px;animation-duration:17s;animation-delay:-6s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:60.7%;left:8%;width:17px;animation-duration:20s;animation-delay:-22s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:62.6%;left:11%;width:13px;animation-duration:24s;animation-delay:-8s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:66.9%;left:41%;width:15px;animation-duration:14s;animation-delay:-13s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:73.5%;left:17%;width:12px;animation-duration:17s;animation-delay:-22s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:74.8%;left:9%;width:17px;animation-duration:21s;animation-delay:-5s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:82.2%;left:26%;width:17px;animation-duration:22s;animation-delay:-6s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:88.3%;left:18%;width:16px;animation-duration:24s;animation-delay:-12s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:88.5%;left:55%;width:13px;animation-duration:14s;animation-delay:-8s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg><svg class="petal" style="top:96.8%;left:77%;width:14px;animation-duration:14s;animation-delay:-6s" viewBox="0 0 20 24" aria-hidden="true"><use href="#petal"/></svg></div>
 <div class="px-6 lg:px-20 pt-24 lg:pt-36 pb-6 lg:pb-8 bg-mist">
   <a href="../" class="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-ink/70 transition-colors duration-300 hover:text-sage">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>
@@ -105,11 +119,14 @@
 
   <!-- Обложка: крупные имена на светлом фоне, фото заходят друг на друга -->
   <header class="relative bg-mist px-6 lg:px-20 pt-8 lg:pt-12 pb-16 lg:pb-32">
+    <svg class="bq hidden lg:block" style="position:absolute;right:7%;top:-8px;width:92px;--r:14deg;animation-duration:9s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg><svg class="bq lg:hidden" style="position:absolute;right:4%;top:-30px;width:54px;--r:14deg;animation-duration:9s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg>
     <div class="lg:grid lg:grid-cols-12 lg:gap-x-10">
       <div class="lg:col-span-7 lg:row-start-1 relative z-10">
         <p class="text-[13px] text-sage">История первая · 30 июня 2023</p>
         <h2 class="mt-4 lg:mt-6 font-serif font-normal text-[76px] sm:text-[110px] lg:text-[10rem] leading-[0.84] tracking-[-0.03em]">Олег<br><span class="inline-block whitespace-nowrap pl-[0.9em]"><em class="italic font-light text-dusty">и</em> Алина</span></h2>
-        <p class="mt-8 lg:mt-12 max-w-[520px] font-serif italic font-light text-[24px] lg:text-[32px] leading-[1.3]">Тропическая зелень, белые орхидеи и пудровые розы — одна палитра от регистрации на газоне до сервировки банкета.</p>
+      </div>
+      <div class="lg:col-start-8 lg:col-span-5 lg:row-start-1 lg:self-end lg:pb-3 relative z-10">
+        <p class="mt-8 lg:mt-0 max-w-[520px] font-serif italic font-light text-[24px] lg:text-[30px] leading-[1.3]">Тропическая зелень, белые орхидеи и пудровые розы — одна палитра от регистрации на газоне до сервировки банкета.</p>
         <dl class="mt-8 lg:mt-10 grid grid-cols-2 gap-x-6 gap-y-4 max-w-[480px] text-[13px]">
           <div><dt class="text-ink/60">Формат</dt><dd class="mt-1">Выездная регистрация и банкет</dd></div>
           <div><dt class="text-ink/60">Палитра</dt><dd class="mt-1 flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full bg-[#5E7A5A]" aria-hidden="true"></span><span class="w-3.5 h-3.5 rounded-full bg-white border border-ink/15" aria-hidden="true"></span><span class="w-3.5 h-3.5 rounded-full bg-[#E9C4B4]" aria-hidden="true"></span><span class="ml-1">зелень, белый, пудра</span></dd></div>
@@ -122,7 +139,7 @@
         </button>
       </div>
       <!-- Вертикальное фото арки: заходит на широкое фото -->
-      <div class="relative z-20 -mt-20 ml-auto w-[56%] lg:w-auto lg:m-0 lg:col-start-9 lg:col-span-4 lg:row-start-1 lg:row-span-2 lg:self-end lg:translate-y-[12%]">
+      <div class="relative z-20 -mt-20 ml-auto w-[56%] lg:w-auto lg:m-0 lg:col-start-9 lg:col-span-4 lg:row-start-2 lg:self-start lg:mt-6 lg:translate-y-[10%]">
         <button type="button" class="ph frame block w-full" data-full="../img/oleg-alina/arch-monogram.jpg" aria-label="Открыть фото: арка с монограммой">
           <span class="block aspect-[2/3] overflow-hidden bg-mist"><img src="../img/oleg-alina/arch-monogram.jpg" alt="Арка с монограммой пары, белые и пудровые цветы" class="w-full h-full object-cover" loading="lazy"></span>
         </button>
@@ -131,7 +148,8 @@
   </header>
 
   <!-- Глава I. Регистрация -->
-  <section class="px-6 lg:px-20 py-20 sm:py-24 lg:pt-44 lg:pb-32" aria-labelledby="ch1">
+  <section class="relative px-6 lg:px-20 py-20 sm:py-24 lg:pt-44 lg:pb-32" aria-labelledby="ch1">
+    <svg class="bq hidden sm:block" style="position:absolute;left:-20px;top:40px;width:80px;--r:-12deg;animation-duration:10s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg>
     <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-10">
       <div class="lg:col-start-1 lg:col-span-7 lg:row-start-1">
         <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-mist" data-full="../img/oleg-alina/welcome.jpg" aria-label="Открыть фото: табличка Welcome">
@@ -190,7 +208,8 @@
   </section>
 
   <!-- Глава III. Детали -->
-  <section class="px-6 lg:px-20 py-20 sm:py-24 lg:py-32" aria-labelledby="ch3">
+  <section class="relative px-6 lg:px-20 py-20 sm:py-24 lg:py-32" aria-labelledby="ch3">
+    <svg class="bq " style="position:absolute;right:-18px;top:60px;width:84px;--r:-10deg;animation-duration:11s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg><svg class="bq hidden lg:block" style="position:absolute;left:30%;bottom:20px;width:60px;--r:8deg;animation-duration:8.5s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg>
     <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-10">
       <div class="mb-10 lg:mb-0 lg:col-start-1 lg:col-span-4 lg:row-start-1">
         <span class="font-serif italic font-light text-[34px] lg:text-[44px] leading-none text-sage">III</span>
@@ -211,7 +230,7 @@
   </section>
 
   <!-- Похожее оформление: цены -->
-  <section class="lg:mt-24 border-t border-ink/15 px-6 lg:px-20 py-16 sm:py-20 lg:py-24 lg:grid lg:grid-cols-12 lg:gap-x-10" aria-labelledby="price">
+  <section class="relative lg:mt-24 border-t border-ink/15 px-6 lg:px-20 py-16 sm:py-20 lg:py-24 lg:grid lg:grid-cols-12 lg:gap-x-10" aria-labelledby="price">
     <div class="lg:col-span-4">
       <h3 id="price" class="font-serif font-normal text-[34px] lg:text-5xl leading-[1.05]">Из чего складывается смета</h3>
       <p class="mt-4 text-[14px] text-ink/70 max-w-[320px]">Цены на похожее оформление. Точную смету пришлём за 1 день.</p>
@@ -250,8 +269,8 @@
 </main>
 
 <!-- ============ ФУТЕР ============ -->
-<footer class="px-6 lg:px-20 pt-14 lg:pt-24 pb-28 lg:pb-12">
-  <a href="../../" class="block font-serif font-light text-[30px] sm:text-6xl lg:text-[112px] leading-none tracking-[0.08em] lg:tracking-[0.04em] lg:text-center whitespace-nowrap">ТОРЖЕСТВОМАНИЯ</a>
+<footer class="relative overflow-hidden bg-mist px-6 lg:px-20 pt-14 lg:pt-20 pb-28 lg:pb-12">
+  <div class="flex items-end justify-center gap-2 lg:gap-8"><svg class="bq shrink-0 sm:w-[64px] lg:w-[92px]" style="width:79px;position:relative;--r:-16deg;animation-duration:9s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg><a href="../../" class="block font-serif font-light text-[26px] sm:text-6xl lg:text-[100px] leading-none tracking-[0.06em] lg:tracking-[0.04em] text-center whitespace-nowrap">ТОРЖЕСТВОМАНИЯ</a><svg class="bq shrink-0 sm:w-[64px] lg:w-[92px]" style="width:79px;position:relative;--r:16deg;animation-duration:10s" viewBox="0 0 120 210" aria-hidden="true"><use href="#bouquet"/></svg></div>
   <div class="mt-9 lg:mt-14 lg:pt-8 lg:border-t lg:border-ink/15 flex flex-col gap-7 lg:grid lg:grid-cols-3 lg:gap-10">
     <div class="flex flex-col gap-2.5 lg:gap-3 text-sm">
       <span class="text-[10px] lg:text-[11px] tracking-[0.24em] text-sage">КОНТАКТЫ</span>
@@ -270,7 +289,7 @@
 </footer>
 
 <!-- Панель быстрых действий (телефон) -->
-<div class="lg:hidden fixed bottom-3 inset-x-3 z-40 h-[52px] p-[5px] flex gap-[5px] rounded-full bg-snow/70 backdrop-blur-md border border-ink/10 text-ink" style="margin-bottom: env(safe-area-inset-bottom)">
+<div class="lg:hidden fixed bottom-3 inset-x-3 z-40 h-[52px] p-[5px] flex gap-[5px] rounded-full bg-snow/95 backdrop-blur-md border border-ink/10 shadow-[0_8px_24px_-8px_rgba(42,47,53,.25)] text-ink" style="margin-bottom: env(safe-area-inset-bottom)">
   <a href="tel:+79119092000" class="flex-1 flex items-center justify-center gap-2 rounded-full text-[10px] font-medium uppercase tracking-[0.16em]">Позвонить</a>
   <a href="https://vk.ru/trgmania_club" class="flex-[1.5] flex items-center justify-center rounded-full bg-dusty text-[10px] font-medium uppercase tracking-[0.16em]">Написать ВКонтакте</a>
 </div>
