@@ -31,10 +31,10 @@
   .ph img { transition: transform 700ms ease-out; }
   .ph:hover img { transform: scale(1.04); }
   #siteHeader.is-scrolled { background: rgba(250,250,250,.82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
-  #siteHeader.on-dark:not(.is-scrolled) { color: #FAFAFA; border-color: rgba(250,250,250,.2); }
-  #siteHeader.on-dark:not(.is-scrolled) .bar { background: #FAFAFA; }
   :focus-visible { outline: 1px solid #4B5E4C; outline-offset: 4px; }
   #lightbox[hidden] { display: none; }
+  .frame { background: #fff; padding: 8px; box-shadow: 0 24px 48px -12px rgba(42,47,53,.32); }
+  @media (min-width: 1024px) { .frame { padding: 10px; } }
   @media (prefers-reduced-motion: reduce) {
     .ph img { transition: none; }
     html { scroll-behavior: auto; }
@@ -94,181 +94,197 @@
 
 <main>
 
-<!-- ============ ВСТУПЛЕНИЕ ============ -->
-<section class="px-6 lg:px-20 pt-32 lg:pt-48 pb-14 lg:pb-24">
-  <a href="../" class="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-ink/70 transition-colors duration-300 hover:text-sage">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>
-    На главную
-  </a>
-  <div class="mt-10 lg:mt-14 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:items-end">
-    <div class="lg:col-span-7">
-      <span class="text-[11px] lg:text-xs tracking-[0.3em] text-sage">[ ПОРТФОЛИО ]</span>
-      <h1 class="mt-4 lg:mt-6 font-serif font-normal text-5xl sm:text-6xl lg:text-[7rem] leading-[0.98] lg:leading-[0.95] tracking-[-0.015em]">Каждая свадьба&nbsp;—<br><em class="italic font-light">своя</em> история</h1>
-    </div>
-    <p class="mt-6 lg:mt-0 lg:col-start-9 lg:col-span-4 text-[15px] lg:text-base leading-relaxed lg:leading-[1.8] font-light text-ink/90">Больше 600 свадеб с 2012 года. Здесь каждая — отдельно: от выездной регистрации до последней салфетки на банкете, чтобы вы увидели, как мы работаем целиком.</p>
-  </div>
+<!-- ============ ВСТУПЛЕНИЕ: текст + коллаж на цветной плашке ============ -->
+<section class="relative overflow-hidden px-6 lg:px-20 pt-28 lg:pt-40 pb-16 lg:pb-24">
+  <!-- Цветная плашка за коллажем -->
+  <div class="absolute right-0 top-[47%] lg:top-24 h-[44%] lg:h-[78%] w-[72%] lg:w-[36%] bg-dusty" aria-hidden="true"></div>
 
-  <!-- Оглавление историй -->
-  <ol class="mt-12 lg:mt-20 border-t border-ink/10 lg:border-ink/15">
+  <div class="relative lg:grid lg:grid-cols-12 lg:gap-x-10 lg:items-center">
+    <div class="lg:col-span-6 lg:pb-10">
+      <a href="../" class="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-ink/70 transition-colors duration-300 hover:text-sage">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>
+        На главную
+      </a>
+      <h1 class="mt-8 lg:mt-12 font-serif font-normal text-[52px] sm:text-7xl lg:text-[6.4rem] leading-[0.95] lg:leading-[0.94] tracking-[-0.02em]">Каждая свадьба&nbsp;—<br><em class="italic font-light">своя</em> история</h1>
+      <p class="mt-6 lg:mt-10 max-w-[440px] text-[15px] lg:text-[17px] leading-relaxed lg:leading-[1.75] font-light">Больше 600 свадеб с 2012 года. Каждую показываем целиком — от выездной регистрации до последней салфетки на банкете.</p>
+    </div>
+
+    <!-- Коллаж из трёх свадеб: фото заходят друг на друга -->
+    <div class="relative mt-12 lg:mt-0 lg:col-start-7 lg:col-span-6 aspect-[1/1.08] lg:aspect-[1/1.02]">
+      <div class="absolute left-0 top-0 w-[58%] aspect-[3/4] overflow-hidden bg-mist">
+        <img src="../img/roof-arch.jpg" alt="Свадебная арка с белыми цветами на крыше" class="w-full h-full object-cover" fetchpriority="high">
+      </div>
+      <div class="frame absolute right-0 top-[12%] w-[50%] z-10">
+        <div class="aspect-[2/3] overflow-hidden bg-mist">
+          <img src="../img/sage-table.jpg" alt="Молодожены у стола в цвете шалфея" class="w-full h-full object-cover object-[50%_35%]">
+        </div>
+      </div>
+      <div class="frame absolute left-[14%] bottom-0 w-[54%] z-20">
+        <div class="aspect-[3/2] overflow-hidden bg-mist">
+          <img src="../img/velvet-table.jpg" alt="Стол молодоженов в синем бархате с белыми цветами" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ОГЛАВЛЕНИЕ ИСТОРИЙ ============ -->
+<nav aria-label="Истории" class="px-6 lg:px-20 pb-16 lg:pb-28">
+  <ol class="border-t border-ink/15">
     <li>
-      <a href="#oleg-alina" class="group flex items-baseline gap-4 lg:gap-8 py-5 lg:py-7 border-b border-ink/10 lg:border-ink/15">
+      <a href="#oleg-alina" class="group flex items-baseline gap-4 lg:gap-8 py-5 lg:py-7 border-b border-ink/15">
         <span class="text-[11px] tracking-[0.24em] text-sage">01</span>
-        <span class="font-serif text-[28px] lg:text-5xl leading-none transition-colors duration-300 group-hover:text-sage">Олег и Алина</span>
-        <span class="hidden sm:inline ml-auto text-xs lg:text-[13px] text-ink/70">Зелень, орхидеи и пудровые розы · 2023</span>
-        <svg class="ml-auto sm:ml-0 shrink-0 transition-transform duration-300 group-hover:translate-y-1" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        <span class="font-serif text-[30px] lg:text-[56px] leading-none transition-colors duration-300 group-hover:text-sage">Олег и Алина</span>
+        <span class="hidden sm:inline ml-auto text-[13px] text-ink/70">Зелень, орхидеи и пудровые розы, 2023</span>
+        <svg class="ml-auto sm:ml-0 shrink-0 self-center transition-transform duration-300 group-hover:translate-y-1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
       </a>
     </li>
-    <li class="flex items-baseline gap-4 lg:gap-8 py-5 lg:py-7 border-b border-ink/10 lg:border-ink/15 text-ink/40">
+    <li class="flex items-baseline gap-4 lg:gap-8 py-5 lg:py-7 border-b border-ink/15 text-ink/35">
       <span class="text-[11px] tracking-[0.24em]">02</span>
-      <span class="font-serif text-[28px] lg:text-5xl leading-none">Георгий и Екатерина</span>
-      <span class="ml-auto text-[10px] lg:text-[11px] uppercase tracking-[0.2em]">скоро</span>
+      <span class="font-serif text-[30px] lg:text-[56px] leading-none">Георгий и Екатерина</span>
+      <span class="ml-auto text-[12px]">Скоро</span>
     </li>
-    <li class="flex items-baseline gap-4 lg:gap-8 py-5 lg:py-7 border-b border-ink/10 lg:border-ink/15 text-ink/40">
+    <li class="flex items-baseline gap-4 lg:gap-8 py-5 lg:py-7 border-b border-ink/15 text-ink/35">
       <span class="text-[11px] tracking-[0.24em]">03</span>
-      <span class="font-serif text-[28px] lg:text-5xl leading-none">Синий бархат</span>
-      <span class="ml-auto text-[10px] lg:text-[11px] uppercase tracking-[0.2em]">скоро</span>
+      <span class="font-serif text-[30px] lg:text-[56px] leading-none">Синий бархат</span>
+      <span class="ml-auto text-[12px]">Скоро</span>
     </li>
   </ol>
-</section>
+</nav>
 
 <!-- ============ ИСТОРИЯ: ОЛЕГ И АЛИНА ============ -->
 <article id="oleg-alina" class="scroll-mt-16 lg:scroll-mt-24">
 
-  <!-- Обложка -->
-  <div class="relative h-[78svh] min-h-[520px] lg:h-screen lg:min-h-[760px] overflow-hidden bg-ink">
-    <img src="img/oleg-alina/ceremony-wide.jpg" alt="Выездная регистрация: арка с цветами, дорожка и белые стулья на газоне" class="absolute inset-0 w-full h-full object-cover object-[50%_60%]" loading="lazy">
-    <div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/10" aria-hidden="true"></div>
-    <div class="absolute inset-x-6 lg:inset-x-20 bottom-10 lg:bottom-20 text-snow">
-      <span class="text-[11px] lg:text-xs tracking-[0.3em] text-snow/80">ИСТОРИЯ 01</span>
-      <h2 class="mt-4 lg:mt-6 font-serif font-normal text-[56px] sm:text-7xl lg:text-[9rem] leading-[0.92] tracking-[-0.015em]">Олег<br class="sm:hidden"> <em class="italic font-light">и</em> Алина</h2>
-      <ul class="mt-6 lg:mt-9 flex flex-wrap gap-2 lg:gap-2.5 text-[11px] lg:text-xs">
-        <li class="px-3 lg:px-3.5 py-[7px] lg:py-2 rounded-full border border-snow/40">30 июня 2023</li>
-        <li class="px-3 lg:px-3.5 py-[7px] lg:py-2 rounded-full border border-snow/40">Выездная регистрация и банкет</li>
-        <li class="px-3 lg:px-3.5 py-[7px] lg:py-2 rounded-full border border-snow/70">Палитра: зелень, белый, пудра</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Идея -->
-  <div class="px-6 lg:px-20 py-16 sm:py-24 lg:py-32 lg:grid lg:grid-cols-12 lg:gap-x-10">
-    <span class="text-[11px] lg:text-xs tracking-[0.3em] text-sage lg:col-span-3 lg:pt-4">ИДЕЯ</span>
-    <p class="mt-4 lg:mt-0 lg:col-span-8 font-serif font-light text-[28px] sm:text-4xl lg:text-[52px] leading-[1.2] lg:leading-[1.15]">Тропическая зелень, белые орхидеи и&nbsp;пудровые розы — <em class="italic">одна палитра</em> от&nbsp;регистрации на газоне до&nbsp;сервировки банкета.</p>
-  </div>
-
-  <!-- Глава I. Регистрация -->
-  <section class="border-t border-ink/10 lg:border-ink/15 px-6 lg:px-20 py-16 sm:py-24 lg:py-32" aria-labelledby="ch1">
-    <div class="flex items-baseline gap-5 lg:gap-8">
-      <span class="font-serif italic font-light text-[32px] lg:text-[44px] leading-none text-sage">I</span>
-      <h3 id="ch1" class="font-serif font-normal text-[40px] sm:text-5xl lg:text-7xl leading-none">Регистрация</h3>
-    </div>
-
-    <div class="mt-10 lg:mt-16 flex flex-col gap-10 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:items-start">
-      <figure class="lg:col-span-5">
-        <button type="button" class="ph block w-full aspect-[2/3] overflow-hidden bg-mist" data-full="img/oleg-alina/arch-monogram.jpg" aria-label="Открыть фото: арка с монограммой">
-          <img src="img/oleg-alina/arch-monogram.jpg" alt="Арка с монограммой пары, белые и пудровые цветы, белый шар у дорожки" class="w-full h-full object-cover" loading="lazy">
+  <!-- Обложка: крупные имена на светлом фоне, фото заходят друг на друга -->
+  <header class="relative bg-mist px-6 lg:px-20 pt-16 lg:pt-28 pb-16 lg:pb-32">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-10">
+      <div class="lg:col-span-7 lg:row-start-1 relative z-10">
+        <p class="text-[13px] text-sage">История первая · 30 июня 2023</p>
+        <h2 class="mt-4 lg:mt-6 font-serif font-normal text-[76px] sm:text-[110px] lg:text-[10rem] leading-[0.84] tracking-[-0.03em]">Олег<br><span class="inline-block whitespace-nowrap pl-[0.9em]"><em class="italic font-light text-dusty">и</em> Алина</span></h2>
+        <p class="mt-8 lg:mt-12 max-w-[520px] font-serif italic font-light text-[24px] lg:text-[32px] leading-[1.3]">Тропическая зелень, белые орхидеи и пудровые розы — одна палитра от регистрации на газоне до сервировки банкета.</p>
+        <dl class="mt-8 lg:mt-10 grid grid-cols-2 gap-x-6 gap-y-4 max-w-[480px] text-[13px]">
+          <div><dt class="text-ink/60">Формат</dt><dd class="mt-1">Выездная регистрация и банкет</dd></div>
+          <div><dt class="text-ink/60">Палитра</dt><dd class="mt-1 flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full bg-[#5E7A5A]" aria-hidden="true"></span><span class="w-3.5 h-3.5 rounded-full bg-white border border-ink/15" aria-hidden="true"></span><span class="w-3.5 h-3.5 rounded-full bg-[#E9C4B4]" aria-hidden="true"></span><span class="ml-1">зелень, белый, пудра</span></dd></div>
+        </dl>
+      </div>
+      <!-- Широкое фото регистрации -->
+      <div class="mt-12 lg:mt-16 lg:col-start-1 lg:col-span-9 lg:row-start-2 relative z-10">
+        <button type="button" class="ph block w-full aspect-[3/2] lg:aspect-[16/9] overflow-hidden bg-ink" data-full="img/oleg-alina/ceremony-wide.jpg" aria-label="Открыть фото: выездная регистрация">
+          <img src="img/oleg-alina/ceremony-wide.jpg" alt="Выездная регистрация: арка, дорожка и белые стулья на газоне" class="w-full h-full object-cover object-[50%_65%]" loading="lazy">
         </button>
-        <figcaption class="mt-3 text-xs text-ink/70">Арка с монограммой пары</figcaption>
-      </figure>
-      <div class="lg:col-start-7 lg:col-span-6 lg:pt-24 flex flex-col gap-10 lg:gap-14">
-        <figure>
-          <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-mist" data-full="img/oleg-alina/welcome.jpg" aria-label="Открыть фото: табличка Welcome">
-            <img src="img/oleg-alina/welcome.jpg" alt="Табличка Welcome на свадьбу Олега и Алины с тропическими листьями" class="w-full h-full object-cover" loading="lazy">
-          </button>
-          <figcaption class="mt-3 text-xs text-ink/70">Приветственная табличка в той же палитре</figcaption>
-        </figure>
-        <figure class="w-[78%] self-end">
-          <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-mist" data-full="img/oleg-alina/chairs.jpg" aria-label="Открыть фото: декор стульев">
-            <img src="img/oleg-alina/chairs.jpg" alt="Белые стулья гостей с пудровыми розами" class="w-full h-full object-cover" loading="lazy">
-          </button>
-          <figcaption class="mt-3 text-xs text-ink/70">Декор стульев гостей</figcaption>
-        </figure>
+      </div>
+      <!-- Вертикальное фото арки: заходит на широкое фото -->
+      <div class="relative z-20 -mt-20 ml-auto w-[56%] lg:w-auto lg:m-0 lg:col-start-9 lg:col-span-4 lg:row-start-1 lg:row-span-2 lg:self-end lg:translate-y-[12%]">
+        <button type="button" class="ph frame block w-full" data-full="img/oleg-alina/arch-monogram.jpg" aria-label="Открыть фото: арка с монограммой">
+          <span class="block aspect-[2/3] overflow-hidden bg-mist"><img src="img/oleg-alina/arch-monogram.jpg" alt="Арка с монограммой пары, белые и пудровые цветы" class="w-full h-full object-cover" loading="lazy"></span>
+        </button>
       </div>
     </div>
+  </header>
 
-    <dl class="mt-14 lg:mt-20 pt-6 border-t border-ink/10 lg:border-ink/15 lg:grid lg:grid-cols-12 lg:gap-x-10">
-      <dt class="text-[11px] tracking-[0.24em] text-sage lg:col-span-3">ЧТО ОФОРМИЛИ</dt>
-      <dd class="mt-3 lg:mt-0 lg:col-span-8 text-[15px] lg:text-base leading-relaxed font-light">Арка с монограммой, композиции вдоль дорожки, декор стульев, приветственная табличка</dd>
-    </dl>
+  <!-- Глава I. Регистрация -->
+  <section class="px-6 lg:px-20 py-20 sm:py-24 lg:pt-44 lg:pb-32" aria-labelledby="ch1">
+    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-10">
+      <div class="lg:col-start-1 lg:col-span-7 lg:row-start-1">
+        <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-mist" data-full="img/oleg-alina/welcome.jpg" aria-label="Открыть фото: табличка Welcome">
+          <img src="img/oleg-alina/welcome.jpg" alt="Табличка Welcome на свадьбу Олега и Алины с тропическими листьями" class="w-full h-full object-cover" loading="lazy">
+        </button>
+      </div>
+      <div class="order-first lg:order-none mb-10 lg:mb-0 lg:col-start-9 lg:col-span-4 lg:row-start-1 lg:pt-4">
+        <span class="font-serif italic font-light text-[34px] lg:text-[44px] leading-none text-sage">I</span>
+        <h3 id="ch1" class="mt-2 font-serif font-normal text-[44px] sm:text-5xl lg:text-[72px] leading-none">Регистрация</h3>
+        <p class="mt-5 lg:mt-7 text-[15px] lg:text-base leading-relaxed lg:leading-[1.8] font-light">Арка с монограммой пары, композиции вдоль дорожки, цветы на стульях гостей и приветственная табличка в той же палитре.</p>
+      </div>
+      <div class="relative z-10 -mt-16 sm:-mt-24 lg:mt-0 ml-auto w-[68%] lg:w-auto lg:col-start-6 lg:col-span-5 lg:row-start-1 lg:self-end lg:translate-y-[38%]">
+        <button type="button" class="ph frame block w-full" data-full="img/oleg-alina/chairs.jpg" aria-label="Открыть фото: декор стульев">
+          <span class="block aspect-[3/2] overflow-hidden bg-mist"><img src="img/oleg-alina/chairs.jpg" alt="Белые стулья гостей с пудровыми розами" class="w-full h-full object-cover" loading="lazy"></span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <!-- Глава II. Банкет -->
-  <section class="bg-ink text-snow" aria-labelledby="ch2">
-    <div class="px-6 lg:px-20 pt-16 sm:pt-24 lg:pt-32 flex items-baseline gap-5 lg:gap-8">
-      <span class="font-serif italic font-light text-[32px] lg:text-[44px] leading-none text-dusty">II</span>
-      <h3 id="ch2" class="font-serif font-normal text-[40px] sm:text-5xl lg:text-7xl leading-none">Банкет</h3>
+  <section class="bg-ink text-snow lg:mt-24 pt-20 sm:pt-24 lg:pt-32 pb-20 sm:pb-24 lg:pb-36" aria-labelledby="ch2">
+    <div class="px-6 lg:px-20 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:items-end">
+      <div class="lg:col-span-5">
+        <span class="font-serif italic font-light text-[34px] lg:text-[44px] leading-none text-dusty">II</span>
+        <h3 id="ch2" class="mt-2 font-serif font-normal text-[44px] sm:text-5xl lg:text-[72px] leading-none">Банкет</h3>
+      </div>
+      <p class="mt-5 lg:mt-0 lg:col-start-8 lg:col-span-5 text-[15px] lg:text-base leading-relaxed lg:leading-[1.8] font-light text-snow/85">Высокие композиции на золотых стойках держат зал на уровне глаз гостей и не мешают разговаривать за столом. Номера столов и текстиль — в мятной гамме.</p>
     </div>
+
     <div class="mt-10 lg:mt-16 px-0 lg:px-20">
       <button type="button" class="ph block w-full aspect-[4/3] lg:aspect-[21/9] overflow-hidden bg-[#3A4048]" data-full="img/oleg-alina/hall-wide.jpg" aria-label="Открыть фото: банкетный зал">
         <img src="img/oleg-alina/hall-wide.jpg" alt="Банкетный зал: круглые столы, высокие композиции и облака под потолком" class="w-full h-full object-cover" loading="lazy">
       </button>
     </div>
-    <div class="px-6 lg:px-20 py-12 lg:py-20 grid grid-cols-2 gap-3 lg:grid-cols-12 lg:gap-10 lg:items-start">
-      <button type="button" class="ph col-span-1 lg:col-span-4 aspect-[2/3] overflow-hidden bg-[#3A4048]" data-full="img/oleg-alina/table-tall.jpg" aria-label="Открыть фото: композиция на высокой стойке">
-        <img src="img/oleg-alina/table-tall.jpg" alt="Композиция из орхидей, роз и пальмовых листьев на высокой золотой стойке" class="w-full h-full object-cover" loading="lazy">
-      </button>
-      <button type="button" class="ph col-span-1 lg:col-span-4 mt-10 lg:mt-24 aspect-[2/3] overflow-hidden bg-[#3A4048]" data-full="img/oleg-alina/table-number.jpg" aria-label="Открыть фото: номер стола">
-        <img src="img/oleg-alina/table-number.jpg" alt="Гостевой стол с композицией и золотым номером стола" class="w-full h-full object-cover" loading="lazy">
-      </button>
-      <div class="col-span-2 lg:col-span-4 mt-6 lg:mt-0 lg:pt-48">
-        <p class="font-serif italic font-light text-[24px] lg:text-[30px] leading-[1.3] text-snow/90">Высокие композиции держат зал на уровне глаз гостей и не мешают разговаривать за столом.</p>
-        <dl class="mt-8 pt-5 border-t border-dusty/25">
-          <dt class="text-[11px] tracking-[0.24em] text-dusty">ЧТО ОФОРМИЛИ</dt>
-          <dd class="mt-3 text-[15px] leading-relaxed font-light text-snow/90">Гостевые композиции на золотых стойках, номера столов, текстиль в мятной гамме</dd>
-        </dl>
+
+    <!-- Три фото внахлёст -->
+    <div class="relative px-6 lg:px-20 -mt-16 lg:-mt-40">
+      <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-10">
+        <div class="relative z-10 w-[62%] lg:w-auto lg:col-start-2 lg:col-span-4 lg:row-start-1">
+          <button type="button" class="ph frame block w-full" data-full="img/oleg-alina/table-tall.jpg" aria-label="Открыть фото: композиция на высокой стойке">
+            <span class="block aspect-[2/3] overflow-hidden bg-mist"><img src="img/oleg-alina/table-tall.jpg" alt="Композиция из орхидей, роз и пальмовых листьев на высокой золотой стойке" class="w-full h-full object-cover" loading="lazy"></span>
+          </button>
+        </div>
+        <div class="relative z-20 -mt-44 sm:-mt-64 lg:mt-0 ml-auto w-[54%] lg:w-auto lg:col-start-5 lg:col-span-3 lg:row-start-1 lg:self-end lg:translate-y-[30%]">
+          <button type="button" class="ph frame block w-full" data-full="img/oleg-alina/table-number.jpg" aria-label="Открыть фото: номер стола">
+            <span class="block aspect-[2/3] overflow-hidden bg-mist"><img src="img/oleg-alina/table-number.jpg" alt="Гостевой стол с композицией и золотым номером стола" class="w-full h-full object-cover" loading="lazy"></span>
+          </button>
+        </div>
+        <div class="relative mt-8 lg:mt-56 lg:col-start-8 lg:col-span-5 lg:row-start-1">
+          <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-[#3A4048]" data-full="img/oleg-alina/tables.jpg" aria-label="Открыть фото: столы гостей">
+            <img src="img/oleg-alina/tables.jpg" alt="Гостевые столы с композициями из орхидей и роз" class="w-full h-full object-cover" loading="lazy">
+          </button>
+        </div>
       </div>
-    </div>
-    <div class="px-6 lg:px-20 pb-16 sm:pb-24 lg:pb-32">
-      <button type="button" class="ph block w-full lg:w-[66%] lg:ml-auto aspect-[3/2] overflow-hidden bg-[#3A4048]" data-full="img/oleg-alina/tables.jpg" aria-label="Открыть фото: столы гостей">
-        <img src="img/oleg-alina/tables.jpg" alt="Гостевые столы с композициями из орхидей и роз" class="w-full h-full object-cover" loading="lazy">
-      </button>
     </div>
   </section>
 
   <!-- Глава III. Детали -->
-  <section class="px-6 lg:px-20 py-16 sm:py-24 lg:py-32" aria-labelledby="ch3">
-    <div class="flex items-baseline gap-5 lg:gap-8">
-      <span class="font-serif italic font-light text-[32px] lg:text-[44px] leading-none text-sage">III</span>
-      <h3 id="ch3" class="font-serif font-normal text-[40px] sm:text-5xl lg:text-7xl leading-none">Детали</h3>
-    </div>
-    <div class="mt-10 lg:mt-16 flex flex-col gap-3 lg:grid lg:grid-cols-12 lg:gap-10 lg:items-start">
-      <figure class="lg:col-span-7">
+  <section class="px-6 lg:px-20 py-20 sm:py-24 lg:py-32" aria-labelledby="ch3">
+    <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-x-10">
+      <div class="mb-10 lg:mb-0 lg:col-start-1 lg:col-span-4 lg:row-start-1">
+        <span class="font-serif italic font-light text-[34px] lg:text-[44px] leading-none text-sage">III</span>
+        <h3 id="ch3" class="mt-2 font-serif font-normal text-[44px] sm:text-5xl lg:text-[72px] leading-none">Детали</h3>
+        <p class="mt-5 lg:mt-7 text-[15px] lg:text-base leading-relaxed lg:leading-[1.8] font-light">Мятные салфетки, бонбоньерки с мёдом для гостей и геометрические номера столов в золоте.</p>
+      </div>
+      <div class="lg:col-start-5 lg:col-span-8 lg:row-start-1">
         <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-mist" data-full="img/oleg-alina/napkin.jpg" aria-label="Открыть фото: сервировка">
           <img src="img/oleg-alina/napkin.jpg" alt="Сервировка: мятная салфетка и бонбоньерка с мёдом на тарелке" class="w-full h-full object-cover" loading="lazy">
         </button>
-        <figcaption class="mt-3 text-xs text-ink/70">Мятные салфетки и бонбоньерки для гостей</figcaption>
-      </figure>
-      <figure class="mt-7 lg:mt-40 w-[82%] self-end lg:w-auto lg:col-span-5">
-        <button type="button" class="ph block w-full aspect-[3/2] overflow-hidden bg-mist" data-full="img/oleg-alina/setting.jpg" aria-label="Открыть фото: номер стола и сервировка">
-          <img src="img/oleg-alina/setting.jpg" alt="Геометрический номер стола и сервировка с мятной салфеткой" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="relative z-10 -mt-14 sm:-mt-24 lg:mt-0 w-[66%] lg:w-auto lg:col-start-2 lg:col-span-5 lg:row-start-1 lg:self-end lg:translate-y-[42%]">
+        <button type="button" class="ph frame block w-full" data-full="img/oleg-alina/setting.jpg" aria-label="Открыть фото: номер стола и сервировка">
+          <span class="block aspect-[3/2] overflow-hidden bg-mist"><img src="img/oleg-alina/setting.jpg" alt="Геометрический номер стола и сервировка с мятной салфеткой" class="w-full h-full object-cover" loading="lazy"></span>
         </button>
-        <figcaption class="mt-3 text-xs text-ink/70">Геометрические номера столов в золоте</figcaption>
-      </figure>
+      </div>
     </div>
   </section>
 
   <!-- Похожее оформление: цены -->
-  <section class="border-t border-ink/10 lg:border-ink/15 px-6 lg:px-20 py-16 sm:py-24 lg:py-28 lg:grid lg:grid-cols-12 lg:gap-x-10" aria-labelledby="price">
+  <section class="lg:mt-24 border-t border-ink/15 px-6 lg:px-20 py-16 sm:py-20 lg:py-24 lg:grid lg:grid-cols-12 lg:gap-x-10" aria-labelledby="price">
     <div class="lg:col-span-4">
-      <span class="text-[11px] lg:text-xs tracking-[0.3em] text-sage">ПОХОЖЕЕ ОФОРМЛЕНИЕ</span>
-      <h3 id="price" class="mt-4 font-serif font-normal text-[34px] lg:text-5xl leading-[1.05]">Из чего <em class="italic font-light">складывается</em> смета</h3>
+      <h3 id="price" class="font-serif font-normal text-[34px] lg:text-5xl leading-[1.05]">Из чего складывается смета</h3>
+      <p class="mt-4 text-[14px] text-ink/70 max-w-[320px]">Цены на похожее оформление. Точную смету пришлём за 1 день.</p>
     </div>
-    <dl class="mt-8 lg:mt-0 lg:col-start-6 lg:col-span-7 border-t border-ink/10 lg:border-ink/15 text-[15px] lg:text-base">
-      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/10 lg:border-ink/15"><dt class="font-light">Свадебная арка</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">от 20 000 ₽</dd></div>
-      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/10 lg:border-ink/15"><dt class="font-light">Декор стола молодоженов</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">от 16 000 ₽</dd></div>
-      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/10 lg:border-ink/15"><dt class="font-light">Гостевые композиции</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">от 4 500 ₽</dd></div>
-      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/10 lg:border-ink/15"><dt class="font-light">Меню для гостя</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">100–200 ₽</dd></div>
+    <dl class="mt-8 lg:mt-0 lg:col-start-6 lg:col-span-7 border-t border-ink/15 text-[15px] lg:text-base">
+      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/15"><dt class="font-light">Свадебная арка</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">от 20&nbsp;000&nbsp;₽</dd></div>
+      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/15"><dt class="font-light">Декор стола молодоженов</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">от 16&nbsp;000&nbsp;₽</dd></div>
+      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/15"><dt class="font-light">Гостевые композиции</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">от 4&nbsp;500&nbsp;₽</dd></div>
+      <div class="flex justify-between gap-6 py-4 lg:py-5 border-b border-ink/15"><dt class="font-light">Меню для гостя</dt><dd class="font-serif text-xl lg:text-2xl whitespace-nowrap">100–200&nbsp;₽</dd></div>
     </dl>
   </section>
 </article>
 
 <!-- ============ ПРИЗЫВ ============ -->
-<section class="bg-dusty px-6 lg:px-20 py-20 sm:py-28 lg:py-32 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:items-end">
-  <h2 class="lg:col-span-7 font-serif font-normal text-[40px] sm:text-5xl lg:text-7xl leading-[1.05] lg:leading-[1.02] tracking-[-0.01em] text-snow">Хотите<br><em class="italic font-light">похожую</em> свадьбу?</h2>
+<section class="relative overflow-hidden bg-dusty px-6 lg:px-20 py-20 sm:py-28 lg:py-32 lg:grid lg:grid-cols-12 lg:gap-x-10 lg:items-end">
+  <h2 class="lg:col-span-7 font-serif font-normal text-[44px] sm:text-6xl lg:text-[96px] leading-[1] tracking-[-0.015em] text-snow">Хотите похожую свадьбу?</h2>
   <div class="mt-6 lg:mt-0 lg:col-start-9 lg:col-span-4">
     <p class="text-[15px] lg:text-[17px] leading-relaxed">Расскажите о дате и площадке — пришлём детальную смету за 1 день.</p>
     <div class="mt-6 flex flex-col sm:flex-row lg:flex-col gap-2.5">
-      <a href="../#form" class="h-[46px] lg:h-[52px] px-8 inline-flex items-center justify-center bg-ink border border-ink text-snow text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-500 hover:bg-sage hover:border-sage">Заполнить заявку</a>
-      <a href="https://vk.ru/trgmania_club" class="h-[46px] lg:h-[52px] px-8 inline-flex items-center justify-center border border-ink/30 text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-500 hover:bg-ink hover:text-snow">Написать ВКонтакте</a>
+      <a href="../#form" class="h-[50px] lg:h-[54px] px-8 inline-flex items-center justify-center bg-ink border border-ink text-snow text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] whitespace-nowrap transition-colors duration-500 hover:bg-sage hover:border-sage">Заполнить заявку</a>
+      <a href="https://vk.ru/trgmania_club" class="h-[50px] lg:h-[54px] px-8 inline-flex items-center justify-center border border-ink/30 text-[11px] lg:text-xs font-medium uppercase tracking-[0.2em] whitespace-nowrap transition-colors duration-500 hover:bg-ink hover:text-snow">Написать ВКонтакте</a>
     </div>
   </div>
 </section>
